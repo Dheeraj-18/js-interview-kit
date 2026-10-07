@@ -69,3 +69,41 @@ function throttle(callback, delay, options = {}) {
     }
   }
 }
+
+// Flow Diagram of Above Code 
+
+      //           USER CALL
+      //               │
+      //               ▼
+      //         now = Date.now()
+      //               │
+      //               ▼
+      //  ┌────────────────────────┐
+      //  │ leading=false AND      │
+      //  │ first call?            │
+      //  └───────────┬────────────┘
+      //              │
+      //           YES│
+      //              ▼
+      //         lastCall = now
+      //              │
+      //              ▼
+      //  ┌────────────────────────┐
+      //  │ now - lastCall >=      │
+      //  │ delay ?                │
+      //  └───────────┬────────────┘
+      //         YES  │  NO
+      //        ┌─────┴─────┐
+      //        ▼           ▼
+      //  callback()    trailing &&
+      //        │       !timeoutId ?
+      //        │        │
+      //        │      YES│     NO
+      //        │        ▼       ▼
+      //        │      TIMER    NOTHING
+      //        │        │
+      //        │        ▼
+      //        │    callback()
+      //        │
+      //        ▼
+      //  lastCall = now
