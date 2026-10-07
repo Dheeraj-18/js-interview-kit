@@ -25,6 +25,21 @@ function manageScroll() {
 // ----------------------------------------
 // Throttle without setTimeout
 
+// function throttle(callback, delay) {
+//   let lastCall = 0
+
+//   return function throttledFunction() {
+//     let now = Date.now()
+//     if (now - lastCall >= delay) {
+//       callback()
+//       lastCall = now
+//     }
+//   }
+// }
+
+//----------------------------------------------------------------------------------------
+// Throttle with leading and trailing configuration 
+
 function throttle(callback, delay, options = {}) {
   const { leading = false, trailing = true } = options
   const self = this || globalThis
